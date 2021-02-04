@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.blog.mapper.MessageMapper">
+    <sql id="all_columns">
+        id,user_id,message,msg_time
+    </sql>
+    <select id="listAllMessage" resultType="com.example.blog.entity.Message">
+        select
+        <include refid="all_columns"></include>
+        from d_message
+    </select>
+    <select id="getMsgUserInfo" resultType="com.example.blog.entity.User">
+        select u.name
+        from d_message m join d_user u on m.user_id=u.id
+        where m.id=#{id}
+    </select>
+
+    <insert id="addMessage">
+        insert into d_message(user_id,message)
+        values(2,#{message})
+    </insert>
+</mapper>

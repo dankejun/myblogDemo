@@ -32,7 +32,7 @@
 		        <div class="inner">
 		            <article class="article-list bloglist" id="LAY_bloglist" >
 						<section th:each="diary:${diaryList}" class="article-item zoomIn article">
-							<div class="fc-flag">置顶</div>
+							<div class="fc-flag" th:if="${diary.getIsRecommend()==1}">置顶</div>
 							<h5 class="title">       
 								<span class="fc-blue">【原创】</span>
 								<a th:text="${diary.getTitle()}" th:href="@{read/{id}(id=${diary.getId()})}" href="read">.NET Spire.Doc组件</a>
@@ -127,7 +127,7 @@
 					    <h5 class="other-item-title">置顶推荐</h5>
 					    <div class="inner">
 					        <ul class="hot-list-article">
-					                <li th:each="hotList,ListStatus:${diaryList}" th:if="${hotList.getIsRecommend()==1&&ListStatus.index<2}"> <a href="/Blog/Read/16" th:href="@{read/{id}(id=${hotList.getId()})}" th:text="${hotList.getTitle()}">.NET Spire.Doc组件</a></li>
+					                <li th:each="hotList,ListStatus:${diaryList}" th:if="${hotList.getIsRecommend()==1&&ListStatus.index<3}"> <a href="/Blog/Read/16" th:href="@{read/{id}(id=${hotList.getId()})}" th:text="${hotList.getTitle()}">.NET Spire.Doc组件</a></li>
 <!--					                <li> <a href="/Blog/Read/16">.NET Spire.Doc组件</a></li>-->
 <!--					                <li> <a href="/Blog/Read/14">MUI框架-快速开发APP</a></li>-->
 <!--					                <li> <a href="/Blog/Read/9">2018最新版QQ音乐api调用</a></li>-->

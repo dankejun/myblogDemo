@@ -4,15 +4,34 @@
     <sql id="all_columns">
         id,title,description,cover_img,author,content,create_time,is_hot,is_recommend
     </sql>
-    <select id="listAllDiary" resultType="com.example.blog.entity.Diary">
-        select
-        <include refid="all_columns"></include>
-        from d_diary
+    <resultMap id="diary_info" type="com.example.blog.entity.Diary">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="description" property="description"/>
+        <result column="cover_img" property="coverImg"/>
+        <result column="author" property="author"/>
+        <result column="create_time" property="createTime"/>
+        <result column="is_hot" property="isHot"/>
+        <result column="is_recommend" property="isRecommend"/>
+        <association property="diaryCategory" javaType="com.example.blog.entity.DiaryCategory">
+            <result column="category_name" property="categoryName"/>
+        </association>
+    </resultMap>
+    <select id="listAllDiary" resultMap="diary_info">
+        select d.`id`,d.`title`,d.`description`,d.`cover_img`,d.`author`,d.`create_time`,d.`is_hot`,d.`is_recommend`,c.`category_name`
+        from d_diary d join d_diary_category c
+        on d.`category_id`=c.`id`;
     </select>
 
     <select id="findDiaryById" resultType="com.example.blog.entity.Diary">
         select
         <include refid="all_columns"></include>
-        from d_diary where id = #{id}
+        from d_diary
+        where id=#{id}
+    </select>
+
+    <select id="showDiaryCategory" resultType="com.example.blog.entity.DiaryCategory">
+        select category_name
+        from d_diary_category
     </select>
 </mapper>

@@ -12,6 +12,15 @@ public class Diary {
     private Timestamp createTime;
     private Integer isHot;
     private Integer isRecommend;
+    private DiaryCategory diaryCategory;
+
+    public DiaryCategory getDiaryCategory() {
+        return diaryCategory;
+    }
+
+    public void setDiaryCategory(DiaryCategory diaryCategory) {
+        this.diaryCategory = diaryCategory;
+    }
 
     public Integer getIsHot() {
         return isHot;
@@ -97,6 +106,7 @@ public class Diary {
                 ", createTime=" + createTime +
                 ", isHot=" + isHot +
                 ", isRecommend=" + isRecommend +
+                ", diaryCategory=" + diaryCategory +
                 '}';
     }
 }

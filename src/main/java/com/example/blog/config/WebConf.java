@@ -12,7 +12,10 @@ public class WebConf extends WebMvcConfigurationSupport {
             // 静态资源访问路径和存放路径配置
             registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
             // swagger访问配置
-            registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/","classpath:/META-INF/resources/webjars/");
+            registry.addResourceHandler("swagger-ui.html").addResourceLocations(
+                    "classpath:/META-INF/resources/");
+            registry.addResourceHandler("/webjars/**").addResourceLocations(
+                    "classpath:/META-INF/resources/webjars/");
         }
     }
 
